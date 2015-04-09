@@ -1,0 +1,3 @@
+target/*
+!target/tabs-rest-plugin-1.0.jar
+!target/tabs-rest-plugin-1.0-tests.jar
