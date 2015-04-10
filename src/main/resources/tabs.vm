@@ -1,0 +1,56 @@
+<html>
+	<head>
+		<title>Laboratory</title>
+		<meta charset="utf-8">
+			<meta name="decorator" content="atl.admin">
+				$webResourceManager.requireResource("com.atlassian.auiplugin:ajs")
+				<!-- include experimental restfull table -->
+				$webResourceManager.requireResource("com.atlassian.auiplugin:aui-experimental-restfultable")
+				$webResourceManager.requireResource("com.atlassian.plugins.tabsplugin.tabs-rest-plugin:tabs-rest-plugin-resources")
+	</head>
+	<body>
+		<!-- vertical aui-tabs -->
+		<div class="aui-tabs vertical-tabs" role="application">
+		
+			<!-- vertical aui-tabs menu -->
+			<ul class="tabs-menu" role="tablist">
+				<li class="menu-item active-tab" role="presentation">
+					<a href="#tabs-first" id="aui-uid-0-1426670166713" role="tab"
+						aria-selected="true">
+						<strong>A</strong>
+					</a>
+				</li>
+				<li class="menu-item" role="presentation">
+					<a href="#tabs-second" id="aui-uid-1-1426670166713" role="tab"
+						aria-selected="false">
+						<strong>B</strong>
+					</a>
+				</li>
+				<li class="menu-item" role="presentation">
+					<a href="#tabs-third" id="aui-uid-2-1426670166713" role="tab"
+						aria-selected="false">
+						<strong>C</strong>
+					</a>
+				</li>
+			</ul>
+			
+			<!-- vertical aui-tabs content -->
+			<div class="tabs-pane active-pane" id="tabs-first" role="tabpanel"
+				aria-hidden="false">
+				<h2>1 tab</h2>
+				<p>Some text 1</p>
+			</div>
+			<div class="tabs-pane" id="tabs-second" role="tabpanel"
+				aria-hidden="true">
+				<h2>2 tab, Restfull table</h2>
+				<!-- my table with id=#restfull-table for aui-experimental-restfultable -->
+				<table id="restfull-table"></table>
+			</div>
+			<div class="tabs-pane" id="tabs-third" role="tabpanel"
+				aria-hidden="true">
+				<h2>3 tab</h2>
+				<p>Some text 3</p>
+			</div>
+		</div>
+	</body>
+</html>

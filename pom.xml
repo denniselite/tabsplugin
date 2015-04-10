@@ -71,6 +71,38 @@
 			<scope>test</scope>
 		</dependency>
 		-->
+		
+		<!-- import dependency for REST -->
+		<dependency>
+            <groupId>com.atlassian.plugins.rest</groupId>
+            <artifactId>atlassian-rest-common</artifactId>
+            <version>1.0.2</version>
+            <scope>provided</scope>
+        </dependency>
+        
+        <!-- import template renderer package -->
+        <dependency>
+		  <groupId>com.atlassian.templaterenderer</groupId>
+		  <artifactId>atlassian-template-renderer-api</artifactId>
+		  <version>1.1.1</version>
+		  <scope>provided</scope>
+		</dependency>
+		
+        <!-- import active objects package -->
+		<dependency>
+          <groupId>com.atlassian.activeobjects</groupId>
+          <artifactId>activeobjects-plugin</artifactId>
+          <version>0.20</version>
+          <scope>provided</scope>
+        </dependency>
+        
+        <!-- import google collections package -->
+        <dependency>
+          <groupId>com.google.collections</groupId>
+          <artifactId>google-collections</artifactId>
+          <version>1.0</version>
+          <scope>provided</scope>
+        </dependency>
     </dependencies>
 
     <build>

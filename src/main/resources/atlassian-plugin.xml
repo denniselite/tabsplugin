@@ -1,32 +1,72 @@
-<atlassian-plugin key="${project.groupId}.${project.artifactId}" name="${project.name}" plugins-version="2">
-    <plugin-info>
-        <description>${project.description}</description>
-        <version>${project.version}</version>
-        <vendor name="${project.organization.name}" url="${project.organization.url}" />
-        <param name="plugin-icon">images/pluginIcon.png</param>
-        <param name="plugin-logo">images/pluginLogo.png</param>
-    </plugin-info>
+<atlassian-plugin key="${project.groupId}.${project.artifactId}"
+	name="${project.name}" plugins-version="2">
+	<plugin-info>
+		<description>${project.description}</description>
+		<version>${project.version}</version>
+		<vendor name="${project.organization.name}" url="${project.organization.url}" />
+		<param name="plugin-icon">images/pluginIcon.png</param>
+		<param name="plugin-logo">images/pluginLogo.png</param>
+	</plugin-info>
 
-    <!-- add our i18n resource -->
-    <resource type="i18n" name="i18n" location="tabs-rest-plugin"/>
-    
-    <!-- add our web resources -->
-    <web-resource key="tabs-rest-plugin-resources" name="tabs-rest-plugin Web Resources">
-        <dependency>com.atlassian.auiplugin:ajs</dependency>
-        
-        <resource type="download" name="tabs-rest-plugin.css" location="/css/tabs-rest-plugin.css"/>
-        <resource type="download" name="tabs-rest-plugin.js" location="/js/tabs-rest-plugin.js"/>
-        <resource type="download" name="images/" location="/images"/>
+	<!-- add our i18n resource -->
+	<resource type="i18n" name="i18n" location="tabs-rest-plugin" />
 
-        <context>tabs-rest-plugin</context>
-    </web-resource>
+	<!-- add our web resources -->
+	<web-resource key="tabs-rest-plugin-resources" name="tabs-rest-plugin Web Resources">
+		<dependency>com.atlassian.auiplugin:ajs</dependency>
+		<dependency>com.atlassian.auiplugin:aui-experimental-restfultable</dependency>
+		<resource type="download" name="tabs-rest-plugin.css"
+			location="/css/tabs-rest-plugin.css" />
+		<resource type="download" name="tabs-rest-plugin.js"
+			location="/js/tabs-rest-plugin.js" />
+		<resource type="download" name="images/" location="/images" />
+
+		<context>tabs-rest-plugin</context>
+	</web-resource>
+
+	<!-- publish our component -->
+	<component key="myPluginComponent"
+		class="com.atlassian.plugins.tabsplugin.MyPluginComponentImpl" public="true">
+		<interface>com.atlassian.plugins.tabsplugin.MyPluginComponent
+		</interface>
+	</component>
+
+	<!-- import from the product container -->
+	<component-import key="applicationProperties"
+		interface="com.atlassian.sal.api.ApplicationProperties" />
+
+	<!-- import servlet -->
+	<servlet key="tabs-rest-plugin"
+		class="com.atlassian.plugins.tabsplugin.tabsrestplugin.TabsServlet">
+		<url-pattern>/jira/resttabs</url-pattern>
+	</servlet>
+
+	<!-- import tabs rest resource -->
+	<rest name="Tabs Rest Resource" key="tabs-rest-resource" path="/tabsrestresource"
+		version="1.0">
+		<description>The Tabs Rest Resource Plugin</description>
+	</rest>
+
+	<!-- include active objects service -->
+	<component-import key="ao" name="Active Objects service"
+		interface="com.atlassian.activeobjects.external.ActiveObjects">
+		<description>Component to access Active Objects functionality from the
+			plugin</description>
+	</component-import>
+
+	<!-- include active objects entity -->
+	<ao key="ao-module">
+		<description>The module configuring the Active Objects service used by
+			this plugin</description>
+		<entity>com.atlassian.plugins.tabsplugin.data.TabsAo</entity>
+	</ao>
+	
+	<!-- Link to plugin page -->
+	 <web-item key="my_links_link" name="Link to page" section="system.top.navigation.bar" weight="47">
+        <label>Лаборатория</label>
+        <link linkId="my_links_link">/plugins/servlet/jira/resttabs</link>
+    </web-item>
     
-    <!-- publish our component -->
-    <component key="myPluginComponent" class="com.atlassian.plugins.tabsplugin.MyPluginComponentImpl" public="true">
-        <interface>com.atlassian.plugins.tabsplugin.MyPluginComponent</interface>
-    </component>
-    
-    <!-- import from the product container -->
-    <component-import key="applicationProperties" interface="com.atlassian.sal.api.ApplicationProperties" />
-    
+    <!-- import renderer -->
+    <component-import key="renderer" interface="com.atlassian.templaterenderer.velocity.one.six.VelocityTemplateRenderer" />
 </atlassian-plugin>
