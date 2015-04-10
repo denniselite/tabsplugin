@@ -10,10 +10,10 @@ AJS.$(document).ready(function(){
 		resources: {
 
 			//for all rows
-			all: "/jira/rest/tabsrestresource/1.0/row/all",
+			all: "/rest/tabsrestresource/1.0/row/all",
 
 			//CRUD methods for each item
-			self: "/jira/rest/tabsrestresource/1.0/row"
+			self: "/rest/tabsrestresource/1.0/row"
 		},
 
 		//simple columns description
