@@ -81,7 +81,7 @@ public class TabsRestResource{
 	public Response createRow(final TabsRestResourceModel row){
 
 		//Check not-null params
-		if ((row.getString() != null)&&(row.getDate() != null)){
+		if ((row.getString() != null)&&(row.getDate() != null)&&(row.getString() != "")&&(row.getDate() != "")){
 			final TabsAo tabsao = ao.create(TabsAo.class);
 			ao.executeInTransaction(new TransactionCallback<TabsAo>(){
 				@Override
@@ -99,7 +99,7 @@ public class TabsRestResource{
 			//return result
 			return Response.ok(row).build();
 		} else {
-			return Response.ok(null).build();
+			return Response.status(400).build();
 		}
 	}
 
@@ -108,8 +108,8 @@ public class TabsRestResource{
 	@Path ("{id}")
 	public Response updateRow(final @PathParam("id") int id, final TabsRestResourceModel row){
 
-		//Check input parans
-		if ( ((row.getString() != null)||(row.getDate() != null)) && (id >= 0) ){
+		//Check input params
+		if ( ( ((row.getString() != null)&&(row.getString() != "")) || ((row.getDate() != null)&&(row.getDate() != ""))) && (id >= 0) ){
 			ao.executeInTransaction(new TransactionCallback<TabsAo>(){
 				@Override
 				public TabsAo doInTransaction(){
@@ -135,7 +135,7 @@ public class TabsRestResource{
 			});
 			return Response.ok(row).build();
 		} else {
-			return Response.ok("empty data").build();
+			return Response.status(400).build();
 		}
 	}
 
